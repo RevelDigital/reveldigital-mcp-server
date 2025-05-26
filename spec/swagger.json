@@ -1,0 +1,6646 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Revel Digital REST API",
+    "description": "Provides REST based access to your Revel Digital account",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://api.reveldigital.com"
+    }
+  ],
+  "paths": {
+    "/account": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Gets account details.",
+        "description": "",
+        "operationId": "GetAccount",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns account details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the account API key is invalid"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Updates an account.",
+        "description": "",
+        "operationId": "PutAccount",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Account",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "If the account API key is invalid"
+          },
+          "201": {
+            "description": "If account was updated successfully"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/account/organizations": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Gets organizations.",
+        "description": "",
+        "operationId": "GetOrganizations",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns list of organizations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Organization"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the account API key is invalid"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/devices": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Gets all devices in an account.",
+        "operationId": "GetDevices",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Optional number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Optional number of page to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "device_type_id",
+            "in": "query",
+            "description": "Optional device type Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "group_id",
+            "in": "query",
+            "description": "Optional media group Id",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "group_name",
+            "in": "query",
+            "description": "Optional group name to filter by",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "include_snap",
+            "in": "query",
+            "description": "Optional include snapshot of currently playing content",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "org_id",
+            "in": "query",
+            "description": "Optional organization Id to filter by",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Device"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Registers a new device.",
+        "operationId": "PostDevice",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activation_code",
+            "in": "query",
+            "description": "Activation code",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Device",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Device"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/devices/{id}": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Gets a device by ID.",
+        "operationId": "GetDeviceById",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Device Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Device"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Updates a device.",
+        "operationId": "PutDevice",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Device Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Device",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Delete a device.",
+        "operationId": "DeleteDevice",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Device Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Patch a device. Patch allows partial updates by targeting specific properties of the device.\r\nUses the JSON Patch syntax (http://jsonpatch.com)",
+        "operationId": "PatchDevice",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Device Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/JsonPatchDocument"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/devices/groups": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Gets device groups in the account.",
+        "operationId": "GetDeviceGroups",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tree",
+            "in": "query",
+            "description": "Optional hierarchical data format",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Optional group id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Optional number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Optional number of page to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Group"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Create a new device group.",
+        "operationId": "PostDeviceGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Device group",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/devices/groups/{id}": {
+      "put": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Updates a device group.",
+        "operationId": "PutDeviceGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Group id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Device group",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Delete a device group.",
+        "description": "Group must be empty.",
+        "operationId": "DeleteDeviceGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Device group Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/devices/pingdata": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Gets device ping data by registration key.",
+        "operationId": "GetPingData",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "description": "Registration key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PingData"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/devices/{registrationKey}/snap": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Gets current snapshot of the device screen.",
+        "operationId": "GetSnapshot",
+        "parameters": [
+          {
+            "name": "registrationKey",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/devices/{registrationKey}/pingdata": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Gets device ping data by registration key.",
+        "operationId": "GetDevicePingData",
+        "parameters": [
+          {
+            "name": "registrationKey",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PingData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/devices/commands": {
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Sends a collection of commands to devices.",
+        "operationId": "PostDevicesCommands",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Command set",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/DeviceCommand"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/devices/{id}/commands": {
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Sends a collection of commands to a specific device.",
+        "operationId": "PostDeviceCommands",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Device Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Commands",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Command"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/devices/{id}/track": {
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Create an event associated with a device.",
+        "operationId": "PostEvent",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Device Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Event",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Event"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/media": {
+      "get": {
+        "tags": [
+          "Media"
+        ],
+        "summary": "Gets all media in an account.",
+        "operationId": "GetMedia",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Optional Media Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Optional number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Optional number of page to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "group_id",
+            "in": "query",
+            "description": "Optional media group Id",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "group_name",
+            "in": "query",
+            "description": "Optional group name to filter by",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Media"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Media"
+        ],
+        "summary": "Uploads new media asset.",
+        "description": "POST body must be in multipart/form-data format",
+        "operationId": "PostMediaMultipart",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "description": "The media file",
+                    "format": "binary"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The media name"
+                  },
+                  "group_id": {
+                    "type": "string",
+                    "description": "The group id"
+                  },
+                  "tags": {
+                    "type": "string",
+                    "description": "The tags associated with this media"
+                  },
+                  "advertiser_id": {
+                    "type": "string",
+                    "description": "The advertiser id. Optional"
+                  },
+                  "is_shared": {
+                    "type": "boolean",
+                    "description": "Is this media shared with other accounts"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "description": "The start date for this media",
+                    "format": "date-time"
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "description": "The end date for this media",
+                    "format": "date-time"
+                  }
+                }
+              },
+              "encoding": {
+                "file": {
+                  "style": "form"
+                },
+                "name": {
+                  "style": "form"
+                },
+                "group_id": {
+                  "style": "form"
+                },
+                "tags": {
+                  "style": "form"
+                },
+                "advertiser_id": {
+                  "style": "form"
+                },
+                "is_shared": {
+                  "style": "form"
+                },
+                "start_date": {
+                  "style": "form"
+                },
+                "end_date": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Media"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/media/{id}": {
+      "get": {
+        "tags": [
+          "Media"
+        ],
+        "summary": "Gets media item by ID.",
+        "operationId": "GetMediaById",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Media Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Media"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Media"
+        ],
+        "summary": "Update media asset properties.",
+        "operationId": "PutMedia",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Media Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MediaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Media"
+        ],
+        "summary": "Patch a media item. Patch allows partial updates by targeting specific properties of the schedule.\r\nUses the JSON Patch syntax (http://jsonpatch.com)",
+        "operationId": "PatchMedia",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Media Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Patch update",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/JsonPatchDocument"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Media"
+        ],
+        "summary": "Delete media asset.",
+        "operationId": "DeleteMedia",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/media/groups": {
+      "get": {
+        "tags": [
+          "Media"
+        ],
+        "summary": "Gets media groups.",
+        "operationId": "GetMediaGroups",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tree",
+            "in": "query",
+            "description": "Optional hierarchical data format",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Optional group id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Optional number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Optional number of page to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Group"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Media"
+        ],
+        "summary": "Create a new media group.",
+        "operationId": "PostMediaGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Media group",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/media/groups/{id}": {
+      "put": {
+        "tags": [
+          "Media"
+        ],
+        "summary": "Updates a media group.",
+        "operationId": "PutMediaGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Group id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Media group",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Media"
+        ],
+        "summary": "Delete a media group.",
+        "description": "Group must be empty.",
+        "operationId": "DeleteMediaGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Media group Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/media/{group_id}/{file_name}": {
+      "post": {
+        "tags": [
+          "Media"
+        ],
+        "summary": "Uploads new media asset.",
+        "description": "POST body should contain raw binary media file",
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "file_name",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shared",
+            "in": "query",
+            "description": "Optional media sharing",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Optional start date",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "Optional end date",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "advertiser_id",
+            "in": "query",
+            "description": "Optional advertiser user Id",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Optional media name. Overrides the uploaded name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "Optional media tags",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Media"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/media/import": {
+      "post": {
+        "tags": [
+          "Media"
+        ],
+        "summary": "Import a file from a URL.",
+        "operationId": "PostMediaImport",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "url",
+            "in": "query",
+            "description": "URL of the file to import",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "group_id",
+            "in": "query",
+            "description": "Media group Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Returns the newly created media",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Media"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the API key is invalid or upload was not supplied"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/playlists": {
+      "get": {
+        "tags": [
+          "Playlists"
+        ],
+        "summary": "Gets all playlists in an account.",
+        "description": "",
+        "operationId": "GetPlaylists",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Optional playlist Id to filter by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Optional number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Optional number of page to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "group_id",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "group_name",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an array of playlists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Playlist"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/playlists/{id}": {
+      "get": {
+        "tags": [
+          "Playlists"
+        ],
+        "summary": "Gets a playlist by ID.",
+        "description": "",
+        "operationId": "GetPlaylistById",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Playlist Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the playlist matching the ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Playlists"
+        ],
+        "summary": "Put a playlist. Replaces a playlist with the one provided.",
+        "operationId": "PutPlaylist",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Playlist Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Playlist",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Playlist"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Playlists"
+        ],
+        "summary": "Delete a playlist.",
+        "operationId": "DeletePlaylist",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Playlist Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Playlists"
+        ],
+        "summary": "Patch a playlist. Patch allows partial updates by targeting specific properties of the playlist.\r\nUses the JSON Patch syntax (http://jsonpatch.com)",
+        "operationId": "PatchPlaylist",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Playlist Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Patch document",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/JsonPatchDocument"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/playlists/groups": {
+      "get": {
+        "tags": [
+          "Playlists"
+        ],
+        "summary": "Gets playlist groups in the account.",
+        "description": "",
+        "operationId": "GetPlaylistGroups",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tree",
+            "in": "query",
+            "description": "Optional hierarchical data format",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Optional group id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Optional number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Optional number of page to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an array of playlist groups",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Group"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Playlists"
+        ],
+        "summary": "Create a new playlist group.",
+        "operationId": "PostPlaylistGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Playlist group",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns the newly-created item",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the item is null"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/playlists/groups/{id}": {
+      "put": {
+        "tags": [
+          "Playlists"
+        ],
+        "summary": "Updates a playlist group.",
+        "operationId": "PutPlaylistGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Group id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Device group",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Playlists"
+        ],
+        "summary": "Delete a playlist group.",
+        "description": "Group must be empty.",
+        "operationId": "DeletePlaylistGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Playlist group Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/report/adhawk/impressions-by-gender": {
+      "get": {
+        "tags": [
+          "Report"
+        ],
+        "operationId": "GetImpressionsByGenderReport",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "gender",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "compare_start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "compare_end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/report/adhawk/impressions-by-hour": {
+      "get": {
+        "tags": [
+          "Report"
+        ],
+        "operationId": "GetImpressionsByHourReport",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Duration interval to generate the report for",
+            "schema": {
+              "$ref": "#/components/schemas/IntervalType"
+            }
+          },
+          {
+            "name": "metric",
+            "in": "query",
+            "description": "Type of metric to run the report on",
+            "schema": {
+              "$ref": "#/components/schemas/MetricType"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "compare_start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "compare_end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/report/adhawk/impressions-by-age": {
+      "get": {
+        "tags": [
+          "Report"
+        ],
+        "operationId": "GetImpressionsByAgeReport",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Duration interval to generate the report for",
+            "schema": {
+              "$ref": "#/components/schemas/IntervalType"
+            }
+          },
+          {
+            "name": "metric",
+            "in": "query",
+            "description": "Type of metric to run the report on",
+            "schema": {
+              "$ref": "#/components/schemas/MetricType"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "compare_start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "compare_end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/report/adhawk/device-detail": {
+      "get": {
+        "tags": [
+          "Report"
+        ],
+        "operationId": "GetDeviceDetailReport",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Duration interval to generate the report for",
+            "schema": {
+              "$ref": "#/components/schemas/IntervalType"
+            }
+          },
+          {
+            "name": "metric",
+            "in": "query",
+            "description": "Type of metric to run the report on",
+            "schema": {
+              "$ref": "#/components/schemas/MetricType"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "compare_start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "compare_end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/report/adhawk/gender-detail": {
+      "get": {
+        "tags": [
+          "Report"
+        ],
+        "operationId": "GetGenderDetailReport",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Duration interval to generate the report for",
+            "schema": {
+              "$ref": "#/components/schemas/IntervalType"
+            }
+          },
+          {
+            "name": "metric",
+            "in": "query",
+            "description": "Type of metric to run the report on",
+            "schema": {
+              "$ref": "#/components/schemas/MetricType"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "compare_start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "compare_end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/report/adhawk/device-summary": {
+      "get": {
+        "tags": [
+          "Report"
+        ],
+        "operationId": "GetDeviceSummaryReport",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Duration interval to generate the report for",
+            "schema": {
+              "$ref": "#/components/schemas/IntervalType"
+            }
+          },
+          {
+            "name": "metric",
+            "in": "query",
+            "description": "Type of metric to run the report on",
+            "schema": {
+              "$ref": "#/components/schemas/MetricType"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "compare_start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "compare_end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/report/adhawk/device-heatmap": {
+      "get": {
+        "tags": [
+          "Report"
+        ],
+        "operationId": "GetDeviceHeatmapReport",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Duration interval to generate the report for",
+            "schema": {
+              "$ref": "#/components/schemas/IntervalType"
+            }
+          },
+          {
+            "name": "metric",
+            "in": "query",
+            "description": "Type of metric to run the report on",
+            "schema": {
+              "$ref": "#/components/schemas/MetricType"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "compare_start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "compare_end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/report/adhawk/device-geolocation": {
+      "get": {
+        "tags": [
+          "Report"
+        ],
+        "operationId": "GetDeviceGeolocationReport",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Duration interval to generate the report for",
+            "schema": {
+              "$ref": "#/components/schemas/IntervalType"
+            }
+          },
+          {
+            "name": "metric",
+            "in": "query",
+            "description": "Type of metric to run the report on",
+            "schema": {
+              "$ref": "#/components/schemas/MetricType"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "compare_start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "compare_end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/report": {
+      "get": {
+        "tags": [
+          "Report"
+        ],
+        "summary": "Returns a list of reports available for export.",
+        "operationId": "GetReportById",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Optional report id filter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Report"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/report/export": {
+      "post": {
+        "tags": [
+          "Report"
+        ],
+        "summary": "Generate and export a report.",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "exclude_body",
+            "in": "query",
+            "description": "Exclude the generated report body in the response. This report is always available at the URL provided in the X-RevelDigital-GeneratedReportUrl header value.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Report parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportExportPostBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/report/export/{report_id}": {
+      "get": {
+        "tags": [
+          "Report"
+        ],
+        "operationId": "ExportReport",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "report_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/FormatType"
+            }
+          },
+          {
+            "name": "activity_type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Duration interval to generate the report for",
+            "schema": {
+              "$ref": "#/components/schemas/IntervalType"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "media_id",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/schedules": {
+      "get": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "Gets schedules in an account.",
+        "operationId": "GetSchedules",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Optional schedule Id to filter by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Optional number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Optional number of page to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "group_id",
+            "in": "query",
+            "description": "Optional schedule group Id",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "group_name",
+            "in": "query",
+            "description": "Optional group name to filter by",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "description": "Optional schedule Id to filter by",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Schedule"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "Creates a new schedule.",
+        "operationId": "PostSchedule",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/schedules/{id}": {
+      "get": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "Gets a schedule by ID.",
+        "operationId": "GetScheduleById",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "Update schedule.",
+        "operationId": "PutSchedule",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "Patch a schedule. Patch allows partial updates by targeting specific properties of the schedule.\r\nUses the JSON Patch syntax (http://jsonpatch.com)",
+        "operationId": "PatchSchedule",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Patch update",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/JsonPatchDocument"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "Delete a schedule.",
+        "operationId": "DeleteSchedule",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/schedules/groups": {
+      "get": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "Gets schedule groups in the account.",
+        "operationId": "GetScheduleGroups",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tree",
+            "in": "query",
+            "description": "Optional hierarchical data format",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Optional group id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Optional number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Optional number of page to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Group"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "Create a new schedule group.",
+        "operationId": "PostScheduleGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Schedule group",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/schedules/groups/{id}": {
+      "put": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "Updates a schedule group.",
+        "operationId": "PutScheduleGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule group Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Schedule group",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "Delete a schedule group.",
+        "description": "Group must be empty.",
+        "operationId": "DeleteScheduleGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API Key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule group Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/templates": {
+      "get": {
+        "tags": [
+          "Templates"
+        ],
+        "summary": "Gets all templates in an account.",
+        "description": "",
+        "operationId": "GetTemplates",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Optional template id to filter by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Optional number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Optional number of page to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "group_id",
+            "in": "query",
+            "description": "Optional template group Id",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "group_name",
+            "in": "query",
+            "description": "Optional group name to filter by",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an array of templates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Template"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/templates/{id}": {
+      "get": {
+        "tags": [
+          "Templates"
+        ],
+        "summary": "Gets a template by ID.",
+        "description": "",
+        "operationId": "GetTemplateById",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Template Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the template matching the ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Template"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Templates"
+        ],
+        "summary": "Delete a template.",
+        "operationId": "DeleteTemplate",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Template Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/templates/groups": {
+      "get": {
+        "tags": [
+          "Templates"
+        ],
+        "summary": "Gets template groups in the account.",
+        "description": "",
+        "operationId": "GetTemplateGroups",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tree",
+            "in": "query",
+            "description": "Optional hierarchical data format",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Optional template id to filter by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Optional number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Optional number of page to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an array of playlist groups",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Group"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Templates"
+        ],
+        "summary": "Create a new template group.",
+        "operationId": "PostTemplateGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Template group",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns the newly-created item",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the item is null"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/templates/groups/{id}": {
+      "put": {
+        "tags": [
+          "Templates"
+        ],
+        "summary": "Updates a template group.",
+        "operationId": "PutTemplateGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Group id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Template group",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Templates"
+        ],
+        "summary": "Delete a template group.",
+        "description": "Group must be empty.",
+        "operationId": "DeleteTemplateGroup",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Template group Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Gets all users in an account.",
+        "description": "",
+        "operationId": "GetUsers",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Optional User Id to filter by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Optional number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Optional number of page to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an array of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Gets a user by ID.",
+        "description": "",
+        "operationId": "GetUserById",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Template Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the user matching the ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Account": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The account id",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The account name",
+            "nullable": true
+          },
+          "tags": {
+            "type": "string",
+            "description": "Tags associated with this account",
+            "nullable": true
+          },
+          "business_name": {
+            "type": "string",
+            "description": "The business name",
+            "nullable": true
+          },
+          "address_1": {
+            "type": "string",
+            "description": "The address line 1",
+            "nullable": true
+          },
+          "address_2": {
+            "type": "string",
+            "description": "The address line 2",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "description": "The city",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "description": "The state",
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "description": "The postal code",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "description": "The country",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "description": "The phone number",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "description": "The fax number",
+            "nullable": true
+          },
+          "primary_contact_id": {
+            "type": "string",
+            "description": "The primary contact user id",
+            "nullable": true
+          },
+          "secondary_contact_id": {
+            "type": "string",
+            "description": "The secondary contact user id",
+            "nullable": true
+          },
+          "created_on": {
+            "type": "string",
+            "description": "The created on date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "timeZone": {
+            "type": "string",
+            "description": "The time zone",
+            "nullable": true
+          },
+          "logo_url": {
+            "type": "string",
+            "description": "The logo url",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Account model"
+      },
+      "Beacon": {
+        "type": "object",
+        "properties": {
+          "distance": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "calibration": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "website": {
+            "type": "string",
+            "nullable": true
+          },
+          "devices": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "rating": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "uuid": {
+            "type": "string",
+            "nullable": true
+          },
+          "major": {
+            "type": "string",
+            "nullable": true
+          },
+          "minor": {
+            "type": "string",
+            "nullable": true
+          },
+          "notification_delay": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "instance_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "namespace": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Command": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "arg": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Condition": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ConditionType"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/ConditionOperator"
+          },
+          "value_1": {
+            "type": "string",
+            "description": "Value 1",
+            "nullable": true
+          },
+          "value_2": {
+            "type": "string",
+            "description": "Value 2",
+            "nullable": true
+          },
+          "value_3": {
+            "type": "string",
+            "description": "Value 3",
+            "nullable": true
+          },
+          "value_4": {
+            "type": "string",
+            "description": "Value 4",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConditionOperator": {
+        "enum": [
+          "And",
+          "Or",
+          "AndNot",
+          "OrNot"
+        ],
+        "type": "string"
+      },
+      "ConditionType": {
+        "enum": [
+          "AfterDate",
+          "AfterTime",
+          "Always",
+          "BeforeDate",
+          "BeforeTime",
+          "Command",
+          "DateRange",
+          "DayOfMonth",
+          "DaysOfWeek",
+          "DeviceByGroup",
+          "DeviceByNestedGroup",
+          "DeviceByName",
+          "DeviceByTag",
+          "DeviceByOrg",
+          "Everywhere",
+          "GeoLocation",
+          "GpsWithinRadius",
+          "KeyEvent",
+          "MonthOfYear",
+          "Motion",
+          "Never",
+          "Nowhere",
+          "PctAdult",
+          "PctChild",
+          "PctFemale",
+          "PctMale",
+          "PctSenior",
+          "PctYoung",
+          "PctYoungAdult",
+          "PlaylistByName",
+          "PlaylistByTag",
+          "SendCommand",
+          "SpecificDevice",
+          "SpecificPlaylist",
+          "SpecificTemplate",
+          "SpecificZone",
+          "TemplateByName",
+          "TemplateByTag",
+          "TimeRange",
+          "TopicSet",
+          "TotalViewersGreaterThan",
+          "TotalViewersLessThan",
+          "TouchEvent",
+          "WeekOfMonth",
+          "WeekOfYear"
+        ],
+        "type": "string"
+      },
+      "Device": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The device id",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The device name",
+            "nullable": true
+          },
+          "group_name": {
+            "type": "string",
+            "description": "The group name",
+            "nullable": true
+          },
+          "group_id": {
+            "type": "string",
+            "description": "The group id",
+            "nullable": true
+          },
+          "tags": {
+            "type": "string",
+            "description": "Tags associated with this device",
+            "nullable": true
+          },
+          "device_type": {
+            "$ref": "#/components/schemas/DeviceType"
+          },
+          "entered_service": {
+            "type": "string",
+            "description": "The date the device was registered",
+            "format": "date-time",
+            "nullable": true
+          },
+          "last_service": {
+            "type": "string",
+            "description": "The last service date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "timezone": {
+            "type": "string",
+            "description": "The timezone of the device",
+            "nullable": true
+          },
+          "language_code": {
+            "type": "string",
+            "description": "The language code of the device",
+            "nullable": true
+          },
+          "last_update": {
+            "type": "string",
+            "description": "The timestamp of the last content sync with the server",
+            "format": "date-time",
+            "nullable": true
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "ping_data": {
+            "$ref": "#/components/schemas/PingData"
+          },
+          "registration_key": {
+            "type": "string",
+            "description": "The device registration key",
+            "nullable": true
+          },
+          "encrypted_registration_key": {
+            "type": "string",
+            "description": "The encrypted registration key",
+            "nullable": true
+          },
+          "mac_address": {
+            "type": "string",
+            "description": "The device MAC address, if applicable",
+            "nullable": true
+          },
+          "beacon": {
+            "$ref": "#/components/schemas/Beacon"
+          },
+          "service_level": {
+            "type": "string",
+            "description": "The device service level",
+            "nullable": true
+          },
+          "in_sync": {
+            "type": "boolean",
+            "description": "Is the device content in sync with server"
+          },
+          "serial_number": {
+            "type": "string",
+            "description": "The device serial number",
+            "nullable": true
+          },
+          "deactivated": {
+            "type": "boolean",
+            "description": "Is the device deactivated",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "description": "The device notes",
+            "nullable": true
+          },
+          "is_online": {
+            "type": "boolean",
+            "description": "Is the device currently online.\r\nA device is considered online if it has a timestamp within the last 5 minutes"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Device model"
+      },
+      "DeviceCommand": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "commands": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Command"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeviceJsonPatchDocument": {
+        "type": "object",
+        "properties": {
+          "operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceOperation"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "contractResolver": {
+            "$ref": "#/components/schemas/IContractResolver"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeviceOperation": {
+        "type": "object",
+        "properties": {
+          "operationType": {
+            "$ref": "#/components/schemas/OperationType"
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "op": {
+            "type": "string",
+            "nullable": true
+          },
+          "from": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeviceRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The device name",
+            "nullable": true
+          },
+          "tags": {
+            "type": "string",
+            "description": "Tags associated with this device",
+            "nullable": true
+          },
+          "timeZone": {
+            "type": "string",
+            "description": "The timezone of the device",
+            "nullable": true
+          },
+          "language_code": {
+            "type": "string",
+            "description": "The language code of the device",
+            "nullable": true
+          },
+          "group_id": {
+            "type": "string",
+            "description": "The group id",
+            "nullable": true
+          },
+          "last_service": {
+            "type": "string",
+            "description": "The last service date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "mac_address": {
+            "type": "string",
+            "description": "The MAC address of this device, is applicable",
+            "nullable": true
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "beacon": {
+            "$ref": "#/components/schemas/Beacon"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Device model used in device creation and update"
+      },
+      "DeviceType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "device_caps": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "event_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FormatType": {
+        "enum": [
+          "XML",
+          "CSV",
+          "IMAGE",
+          "PDF",
+          "EXCEL",
+          "WORD",
+          "HTML",
+          "MHTML"
+        ],
+        "type": "string"
+      },
+      "Group": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The group id",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The group name",
+            "nullable": true
+          },
+          "parent_id": {
+            "type": "string",
+            "description": "The parent group id",
+            "nullable": true
+          },
+          "count": {
+            "type": "integer",
+            "description": "The number of items in this group",
+            "format": "int32",
+            "nullable": true
+          },
+          "level": {
+            "type": "integer",
+            "description": "The nested level of this group",
+            "format": "int32",
+            "nullable": true
+          },
+          "family": {
+            "type": "integer",
+            "description": "The family id",
+            "format": "int64",
+            "nullable": true
+          },
+          "organization_count": {
+            "type": "integer",
+            "description": "The organization count",
+            "format": "int32",
+            "nullable": true
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Group"
+            },
+            "description": "The children groups",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Group model"
+      },
+      "GroupRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The group name",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IContractResolver": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IntervalType": {
+        "enum": [
+          "Minute",
+          "Hour",
+          "Day",
+          "Month"
+        ],
+        "type": "string",
+        "description": "Duration interval to generate the report for"
+      },
+      "JsonPatchDocument": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Operation"
+        },
+        "description": "Array of operations to perform"
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string",
+            "description": "City",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "description": "State",
+            "nullable": true
+          },
+          "county": {
+            "type": "string",
+            "description": "County",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "description": "Country",
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "description": "Postal code",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "description": "Address",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "number",
+            "description": "Latitude",
+            "format": "double",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Longitude",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoopPolicyType": {
+        "enum": [
+          "Default",
+          "OverSaturate2x",
+          "OverSaturate3x",
+          "OverSaturate4x",
+          "OverSaturate5x",
+          "Random",
+          "UnderSaturate2x",
+          "UnderSaturate3x",
+          "UnderSaturate4x",
+          "UnderSaturate5x",
+          "Prefill",
+          "Postfill",
+          "Spreadfill"
+        ],
+        "type": "string"
+      },
+      "Media": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The media name",
+            "nullable": true
+          },
+          "group_id": {
+            "type": "string",
+            "description": "The group id",
+            "nullable": true
+          },
+          "tags": {
+            "type": "string",
+            "description": "The tags associated with this media",
+            "nullable": true
+          },
+          "advertiser_id": {
+            "type": "string",
+            "description": "The advertiser id. Optional",
+            "nullable": true
+          },
+          "is_shared": {
+            "type": "boolean",
+            "description": "Is this media shared with other accounts",
+            "nullable": true
+          },
+          "start_date": {
+            "type": "string",
+            "description": "The start date for this media",
+            "format": "date-time",
+            "nullable": true
+          },
+          "end_date": {
+            "type": "string",
+            "description": "The end date for this media",
+            "format": "date-time",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "The media id",
+            "nullable": true
+          },
+          "group_name": {
+            "type": "string",
+            "description": "The group name",
+            "nullable": true
+          },
+          "mime_type": {
+            "type": "string",
+            "description": "The MIME type for this media",
+            "nullable": true
+          },
+          "file_size": {
+            "type": "integer",
+            "description": "The file size in bytes",
+            "format": "int32"
+          },
+          "file_name": {
+            "type": "string",
+            "description": "The file name",
+            "nullable": true
+          },
+          "file_url": {
+            "type": "string",
+            "description": "The file URL",
+            "nullable": true
+          },
+          "thumbnail_url": {
+            "type": "string",
+            "description": "The thumbnail URL",
+            "nullable": true
+          },
+          "uploaded_on": {
+            "type": "string",
+            "description": "The date the media was uploaded",
+            "format": "date-time",
+            "nullable": true
+          },
+          "uploaded_by_id": {
+            "type": "string",
+            "description": "The user id that uploaded the media",
+            "nullable": true
+          },
+          "sha_512": {
+            "type": "string",
+            "description": "The SHA512 hash of the media file",
+            "nullable": true
+          },
+          "width": {
+            "type": "integer",
+            "description": "The width of the media",
+            "format": "int32",
+            "nullable": true
+          },
+          "height": {
+            "type": "integer",
+            "description": "The height of the media",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Media model"
+      },
+      "MediaRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The media name",
+            "nullable": true
+          },
+          "group_id": {
+            "type": "string",
+            "description": "The group id",
+            "nullable": true
+          },
+          "tags": {
+            "type": "string",
+            "description": "The tags associated with this media",
+            "nullable": true
+          },
+          "advertiser_id": {
+            "type": "string",
+            "description": "The advertiser id. Optional",
+            "nullable": true
+          },
+          "is_shared": {
+            "type": "boolean",
+            "description": "Is this media shared with other accounts",
+            "nullable": true
+          },
+          "start_date": {
+            "type": "string",
+            "description": "The start date for this media",
+            "format": "date-time",
+            "nullable": true
+          },
+          "end_date": {
+            "type": "string",
+            "description": "The end date for this media",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Media request model. Used for creating and updating media"
+      },
+      "MediaRequestJsonPatchDocument": {
+        "type": "object",
+        "properties": {
+          "operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MediaRequestOperation"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "contractResolver": {
+            "$ref": "#/components/schemas/IContractResolver"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MediaRequestOperation": {
+        "type": "object",
+        "properties": {
+          "operationType": {
+            "$ref": "#/components/schemas/OperationType"
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "op": {
+            "type": "string",
+            "nullable": true
+          },
+          "from": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricType": {
+        "enum": [
+          "PingCount",
+          "AverageDwell"
+        ],
+        "type": "string",
+        "description": "Type of metric to run the report on"
+      },
+      "Module": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Module id",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Module name",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "Module type",
+            "nullable": true
+          },
+          "left": {
+            "type": "integer",
+            "description": "Left position",
+            "format": "int32",
+            "nullable": true
+          },
+          "top": {
+            "type": "integer",
+            "description": "Top position",
+            "format": "int32",
+            "nullable": true
+          },
+          "width": {
+            "type": "integer",
+            "description": "Width",
+            "format": "int32",
+            "nullable": true
+          },
+          "height": {
+            "type": "integer",
+            "description": "Height",
+            "format": "int32",
+            "nullable": true
+          },
+          "playlist_id": {
+            "type": "string",
+            "description": "Playlist assigned to this module",
+            "nullable": true
+          },
+          "sequence": {
+            "type": "integer",
+            "description": "Sequence or Z-Order",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Operation": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string"
+          },
+          "value": {
+            "type": "object",
+            "nullable": true
+          },
+          "path": {
+            "type": "string"
+          }
+        }
+      },
+      "OperationType": {
+        "enum": [
+          "Add",
+          "Remove",
+          "Replace",
+          "Move",
+          "Copy",
+          "Test",
+          "Invalid"
+        ],
+        "type": "string"
+      },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The organization id",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The organization name",
+            "nullable": true
+          },
+          "address_1": {
+            "type": "string",
+            "description": "Address line 1",
+            "nullable": true
+          },
+          "address_2": {
+            "type": "string",
+            "description": "Address line 2",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "description": "The city",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "description": "The state",
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "description": "The postal code",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "description": "The country",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "description": "The phone number",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "description": "The fax number",
+            "nullable": true
+          },
+          "timeZone": {
+            "type": "string",
+            "description": "The time zone",
+            "nullable": true
+          },
+          "language_code": {
+            "type": "string",
+            "description": "The language code",
+            "nullable": true
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            },
+            "description": "The users assigned to this organization",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Organization model"
+      },
+      "PingData": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Ping type",
+            "nullable": true
+          },
+          "snap": {
+            "type": "string",
+            "description": "Snapshot (screenshot) of live player content",
+            "format": "byte",
+            "nullable": true
+          },
+          "player_version": {
+            "type": "string",
+            "description": "Player version number",
+            "nullable": true
+          },
+          "os_version": {
+            "type": "string",
+            "description": "Player OS version",
+            "nullable": true
+          },
+          "cpu_usage": {
+            "type": "number",
+            "description": "CPU usage (percentage)\r\nValue range [0, 100]",
+            "format": "float"
+          },
+          "memory_usage": {
+            "type": "number",
+            "description": "Memory usage (percentage)\r\nValue range [0, 100]",
+            "format": "float"
+          },
+          "mac_address": {
+            "type": "string",
+            "description": "MAC address of primary player network interface",
+            "nullable": true
+          },
+          "disk_usage": {
+            "type": "number",
+            "description": "Disk usage (percentage)\r\nValue range [0, 100]",
+            "format": "float"
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Timestamp of this ping.\r\nDevice is considered offline if this timestamp is older than 10 minutes",
+            "format": "date-time"
+          },
+          "bytes_received": {
+            "type": "integer",
+            "description": "Bytes recieved by this player",
+            "format": "int64"
+          },
+          "transfer_rate": {
+            "type": "integer",
+            "description": "Current transfer rate over the primary network interface",
+            "format": "int64"
+          },
+          "ip_address": {
+            "type": "string",
+            "description": "IP address of the primary network interface",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "number",
+            "description": "Current location of the player (latitude)",
+            "format": "double",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Current location of the player (longitude)",
+            "format": "double",
+            "nullable": true
+          },
+          "current_schedule": {
+            "type": "string",
+            "description": "Currently running schedule",
+            "nullable": true
+          },
+          "uptime": {
+            "type": "integer",
+            "description": "Current uptime of the player (milliseconds)",
+            "format": "int64",
+            "nullable": true
+          },
+          "external_ip_address": {
+            "type": "string",
+            "description": "IP address as seen by the server for this device",
+            "nullable": true
+          },
+          "download_pct_complete": {
+            "type": "integer",
+            "description": "Package download progress (percentage)",
+            "format": "int64",
+            "nullable": true
+          },
+          "meta": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Dictionary of meta data",
+            "nullable": true
+          },
+          "cpu_temperature": {
+            "type": "number",
+            "description": "Current CPU temperature",
+            "format": "float",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Playlist": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The playlist id",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The playlist name",
+            "nullable": true
+          },
+          "group_name": {
+            "type": "string",
+            "description": "The group name",
+            "nullable": true
+          },
+          "group_id": {
+            "type": "string",
+            "description": "The group id",
+            "nullable": true
+          },
+          "tags": {
+            "type": "string",
+            "description": "The tags associated with this playlist",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/PlaylistType"
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Total duration for this playlist. Used in conjunction with loop policy",
+            "format": "int32",
+            "nullable": true
+          },
+          "is_random_start": {
+            "type": "boolean",
+            "description": "Randomize the order of the playlist",
+            "nullable": true
+          },
+          "created_on": {
+            "type": "string",
+            "description": "The date the playlist was created",
+            "format": "date-time",
+            "nullable": true
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "The user id that created the playlist",
+            "nullable": true
+          },
+          "modified_on": {
+            "type": "string",
+            "description": "The date the playlist was last modified",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modified_by_id": {
+            "type": "string",
+            "description": "The user id that last modified the playlist",
+            "nullable": true
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            },
+            "description": "The sources associated with this playlist",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Playlist model"
+      },
+      "PlaylistJsonPatchDocument": {
+        "type": "object",
+        "properties": {
+          "operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlaylistOperation"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "contractResolver": {
+            "$ref": "#/components/schemas/IContractResolver"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlaylistOperation": {
+        "type": "object",
+        "properties": {
+          "operationType": {
+            "$ref": "#/components/schemas/OperationType"
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "op": {
+            "type": "string",
+            "nullable": true
+          },
+          "from": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlaylistType": {
+        "enum": [
+          "Multimedia",
+          "Slideshow",
+          "Template",
+          "Marquee"
+        ],
+        "type": "string"
+      },
+      "Report": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportParameter"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReportExportPostBody": {
+        "required": [
+          "report_id"
+        ],
+        "type": "object",
+        "properties": {
+          "report_id": {
+            "type": "string",
+            "description": "Report name",
+            "nullable": true
+          },
+          "format": {
+            "$ref": "#/components/schemas/FormatType"
+          },
+          "activity_type": {
+            "type": "string",
+            "description": "Activity type",
+            "nullable": true
+          },
+          "interval_type": {
+            "$ref": "#/components/schemas/IntervalType"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "Start date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "end_date": {
+            "type": "string",
+            "description": "End date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "start_time": {
+            "type": "string",
+            "description": "Start time\r\n\r\nFormat is 'HHmm'",
+            "format": "date-time",
+            "nullable": true
+          },
+          "end_time": {
+            "type": "string",
+            "description": "End time\r\n\r\nFormat is 'HHmm'",
+            "format": "date-time",
+            "nullable": true
+          },
+          "device_id": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of devices by Id to include in report",
+            "nullable": true
+          },
+          "user_id": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of users by Id to include in report",
+            "nullable": true
+          },
+          "media_id": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of media items by Id to include in report",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReportParameter": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "multi_value": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Schedule": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the schedule",
+            "nullable": true
+          },
+          "group_id": {
+            "type": "string",
+            "description": "The group id to which the schedule belongs",
+            "nullable": true
+          },
+          "tags": {
+            "type": "string",
+            "description": "The tags associated with the schedule",
+            "nullable": true
+          },
+          "monday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Monday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "tuesday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Tuesday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "wednesday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Wednesday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "thursday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Thursday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "friday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Friday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "saturday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Saturday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "sunday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Sunday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "start_date": {
+            "type": "string",
+            "description": "The start date for the schedule.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "end_date": {
+            "type": "string",
+            "description": "The end date for the schedule.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "start_time": {
+            "type": "string",
+            "description": "The start time for the schedule.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "end_time": {
+            "type": "string",
+            "description": "The end time for the schedule.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "template_id": {
+            "type": "string",
+            "description": "The template id for the schedule.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "playlist_id": {
+            "type": "string",
+            "description": "The playlist id for the schedule.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/ScheduleType"
+          },
+          "devices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScheduleDevice"
+            },
+            "description": "The devices associated with the schedule.",
+            "nullable": true
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            },
+            "description": "The conditions associated with the schedule.\r\nOnly applicable for Campaign schedules.",
+            "nullable": true
+          },
+          "priority": {
+            "$ref": "#/components/schemas/SchedulePriorityType"
+          },
+          "id": {
+            "type": "string",
+            "description": "The schedule id",
+            "nullable": true
+          },
+          "group_name": {
+            "type": "string",
+            "description": "The name of the group to which the schedule belongs",
+            "nullable": true
+          },
+          "created_on": {
+            "type": "string",
+            "description": "The date the schedule was created",
+            "format": "date-time",
+            "nullable": true
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "The user id that created the schedule",
+            "nullable": true
+          },
+          "modified_on": {
+            "type": "string",
+            "description": "The date the schedule was last modified",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modified_by_id": {
+            "type": "string",
+            "description": "The user id that last modified the schedule",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScheduleDevice": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The device id",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SchedulePriorityType": {
+        "enum": [
+          "Normal",
+          "High",
+          "Highest",
+          "Lowest",
+          "Low"
+        ],
+        "type": "string"
+      },
+      "ScheduleRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the schedule",
+            "nullable": true
+          },
+          "group_id": {
+            "type": "string",
+            "description": "The group id to which the schedule belongs",
+            "nullable": true
+          },
+          "tags": {
+            "type": "string",
+            "description": "The tags associated with the schedule",
+            "nullable": true
+          },
+          "monday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Monday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "tuesday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Tuesday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "wednesday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Wednesday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "thursday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Thursday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "friday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Friday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "saturday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Saturday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "sunday": {
+            "type": "boolean",
+            "description": "Enabled this schedule for playback on Sunday.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "start_date": {
+            "type": "string",
+            "description": "The start date for the schedule.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "end_date": {
+            "type": "string",
+            "description": "The end date for the schedule.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "start_time": {
+            "type": "string",
+            "description": "The start time for the schedule.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "end_time": {
+            "type": "string",
+            "description": "The end time for the schedule.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "template_id": {
+            "type": "string",
+            "description": "The template id for the schedule.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "playlist_id": {
+            "type": "string",
+            "description": "The playlist id for the schedule.\r\nOnly applicable for Playlist and Template schedules.",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/ScheduleType"
+          },
+          "devices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScheduleDevice"
+            },
+            "description": "The devices associated with the schedule.",
+            "nullable": true
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            },
+            "description": "The conditions associated with the schedule.\r\nOnly applicable for Campaign schedules.",
+            "nullable": true
+          },
+          "priority": {
+            "$ref": "#/components/schemas/SchedulePriorityType"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Schedule model"
+      },
+      "ScheduleRequestJsonPatchDocument": {
+        "type": "object",
+        "properties": {
+          "operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScheduleRequestOperation"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "contractResolver": {
+            "$ref": "#/components/schemas/IContractResolver"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScheduleRequestOperation": {
+        "type": "object",
+        "properties": {
+          "operationType": {
+            "$ref": "#/components/schemas/OperationType"
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "op": {
+            "type": "string",
+            "nullable": true
+          },
+          "from": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScheduleType": {
+        "enum": [
+          "Playlist",
+          "Template",
+          "Campaign"
+        ],
+        "type": "string"
+      },
+      "Source": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The source id",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The source name",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/SourceType"
+          },
+          "sequence": {
+            "type": "integer",
+            "description": "The sequence. Lower numbers are displayed first.",
+            "format": "int32",
+            "nullable": true
+          },
+          "media_id": {
+            "type": "string",
+            "description": "The media file id",
+            "nullable": true
+          },
+          "template_id": {
+            "type": "string",
+            "description": "The template id",
+            "nullable": true
+          },
+          "playlist_id": {
+            "type": "string",
+            "description": "The playlist id",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "description": "The value",
+            "nullable": true
+          },
+          "interval": {
+            "type": "integer",
+            "description": "The duration in seconds",
+            "format": "int32",
+            "nullable": true
+          },
+          "media": {
+            "$ref": "#/components/schemas/Media"
+          },
+          "loop_policy_type": {
+            "$ref": "#/components/schemas/LoopPolicyType"
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            },
+            "description": "The conditions for this source",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Source model"
+      },
+      "SourceType": {
+        "enum": [
+          "Audio",
+          "Command",
+          "Flash",
+          "Gadget",
+          "Image",
+          "Pdf",
+          "PlaceExchange",
+          "Playlist",
+          "PowerPoint",
+          "Rss",
+          "Svg",
+          "Template",
+          "Text",
+          "Twitter",
+          "Url",
+          "Video",
+          "VistarMedia",
+          "WebPage",
+          "YouTube"
+        ],
+        "type": "string"
+      },
+      "Template": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Template id",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Template name",
+            "nullable": true
+          },
+          "group_name": {
+            "type": "string",
+            "description": "Group name",
+            "nullable": true
+          },
+          "group_id": {
+            "type": "string",
+            "description": "Group id",
+            "nullable": true
+          },
+          "tags": {
+            "type": "string",
+            "description": "Tags",
+            "nullable": true
+          },
+          "created_on": {
+            "type": "string",
+            "description": "Created on date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "Created by user id",
+            "nullable": true
+          },
+          "modified_on": {
+            "type": "string",
+            "description": "Modified on date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modified_by_id": {
+            "type": "string",
+            "description": "Modified by user id",
+            "nullable": true
+          },
+          "script": {
+            "type": "string",
+            "description": "Template script",
+            "nullable": true
+          },
+          "back_color": {
+            "type": "string",
+            "description": "Template background color",
+            "nullable": true
+          },
+          "width": {
+            "type": "integer",
+            "description": "Width",
+            "format": "int32",
+            "nullable": true
+          },
+          "height": {
+            "type": "integer",
+            "description": "Height",
+            "format": "int32",
+            "nullable": true
+          },
+          "orientation": {
+            "type": "integer",
+            "description": "Orientation (Landscape, Portrait, Landscape Reversed, Portrait Reversed)",
+            "format": "int32",
+            "nullable": true
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Module"
+            },
+            "description": "Modules or zones",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The user id",
+            "nullable": true
+          },
+          "first_name": {
+            "type": "string",
+            "description": "The first name",
+            "nullable": true
+          },
+          "last_name": {
+            "type": "string",
+            "description": "The last name",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "description": "The city",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "description": "The state",
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "description": "The postal code",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "description": "The country",
+            "nullable": true
+          },
+          "home_phone": {
+            "type": "string",
+            "description": "The home phone number",
+            "nullable": true
+          },
+          "work_phone": {
+            "type": "string",
+            "description": "The work phone number",
+            "nullable": true
+          },
+          "mobile_phone": {
+            "type": "string",
+            "description": "The mobile phone number",
+            "nullable": true
+          },
+          "created_on": {
+            "type": "string",
+            "description": "The date the user was created",
+            "format": "date-time",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address",
+            "nullable": true
+          },
+          "role": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The roles assigned to this user",
+            "nullable": true
+          },
+          "user_name": {
+            "type": "string",
+            "description": "The username",
+            "nullable": true
+          },
+          "last_activity": {
+            "type": "string",
+            "description": "The date the user last logged in",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "User model"
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://id.reveldigital.com/connect/authorize",
+            "tokenUrl": "https://id.reveldigital.com/connect/token",
+            "scopes": {
+              "webapi": "Web API"
+            }
+          }
+        }
+      },
+      "ApiKeyInHeader": {
+        "type": "apiKey",
+        "description": "Utilize a header based API key associated with your Revel Digital account. X-RevelDigital-ApiKey: XXXXXXXX",
+        "name": "X-RevelDigital-ApiKey",
+        "in": "header"
+      },
+      "ApiKeyInQuery": {
+        "type": "apiKey",
+        "description": "Utilize a query based API key associated with your Revel Digital account. api_key=XXXXXXXXX",
+        "name": "api_key",
+        "in": "query"
+      }
+    }
+  },
+  "security": [
+    { }
+  ]
+}
