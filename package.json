@@ -1,13 +1,19 @@
 {
-  "name": "reveldigital-mcp-server",
-  "version": "v1",
+  "name": "@reveldigital/reveldigital-mcp-server",
   "description": "MCP Server generated from OpenAPI spec for revel-digital-rest-api",
-  "private": true,
+  "private": false,
   "type": "module",
   "main": "build/index.js",
+  "bin": {
+    "@reveldigital/reveldigital-mcp-server": "./build/index.js"
+  },
   "files": [
     "build",
     "src"
+  ],
+  "keywords": [
+    "revel-digital",
+    "mcp"
   ],
   "scripts": {
     "start": "node build/index.js",
@@ -27,6 +33,21 @@
   },
   "devDependencies": {
     "@types/node": "^22.15.2",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.3"
-  }
+  },
+  "version": "1.0.7",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RevelDigital/reveldigital-mcp-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RevelDigital/reveldigital-mcp-server/issues"
+  },
+  "homepage": "https://github.com/RevelDigital/reveldigital-mcp-server#readme"
 }
