@@ -95,3 +95,17 @@ You'll need to obtain API credentials from your Revel Digital account:
 
 Once configured, you can start asking your AI assistant to help manage your digital signage network!
 
+## Developer Documentation
+
+For complete API reference, authentication details, and advanced configuration options, visit the official Revel Digital developer documentation:
+
+**🔗 [https://developer.reveldigital.com](https://developer.reveldigital.com)**
+
+The developer portal includes:
+- Complete REST API documentation
+- Authentication and security guidelines
+- Code examples and SDKs
+- Integration best practices
+
+This documentation will help you understand the full capabilities of the Revel Digital API that this MCP server exposes to your AI assistant.
+
