@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://api.reveldigital.com"
+      "url": "https://localhost:63551/api"
     }
   ],
   "paths": {
@@ -19,16 +19,6 @@
         "summary": "Gets account details.",
         "description": "",
         "operationId": "GetAccount",
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Returns account details",
@@ -65,16 +55,6 @@
         "summary": "Updates an account.",
         "description": "",
         "operationId": "PutAccount",
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "description": "Account",
           "content": {
@@ -119,16 +99,6 @@
         "summary": "Gets organizations.",
         "description": "",
         "operationId": "GetOrganizations",
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Returns list of organizations",
@@ -170,14 +140,6 @@
         "summary": "Gets all devices in an account.",
         "operationId": "GetDevices",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "query",
@@ -289,14 +251,6 @@
         "operationId": "PostDevice",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "activation_code",
             "in": "query",
             "description": "Activation code",
@@ -354,14 +308,6 @@
         "operationId": "GetDeviceById",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Device Id",
@@ -404,14 +350,6 @@
         "summary": "Updates a device.",
         "operationId": "PutDevice",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
@@ -462,14 +400,6 @@
         "operationId": "DeleteDevice",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Device Id",
@@ -508,14 +438,6 @@
         "summary": "Patch a device. Patch allows partial updates by targeting specific properties of the device.\r\nUses the JSON Patch syntax (http://jsonpatch.com)",
         "operationId": "PatchDevice",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
@@ -563,14 +485,6 @@
         "summary": "Gets device groups in the account.",
         "operationId": "GetDeviceGroups",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "tree",
             "in": "query",
@@ -642,16 +556,6 @@
         ],
         "summary": "Create a new device group.",
         "operationId": "PostDeviceGroup",
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "description": "Device group",
           "content": {
@@ -700,14 +604,6 @@
         "summary": "Updates a device group.",
         "operationId": "PutDeviceGroup",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
@@ -759,14 +655,6 @@
         "operationId": "DeleteDeviceGroup",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Device group Id",
@@ -807,14 +695,6 @@
         "summary": "Gets device ping data by registration key.",
         "operationId": "GetPingData",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "key",
             "in": "query",
@@ -915,16 +795,6 @@
         ],
         "summary": "Sends a collection of commands to devices.",
         "operationId": "PostDevicesCommands",
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "description": "Command set",
           "content": {
@@ -966,14 +836,6 @@
         "summary": "Sends a collection of commands to a specific device.",
         "operationId": "PostDeviceCommands",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
@@ -1026,14 +888,6 @@
         "operationId": "PostEvent",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Device Id",
@@ -1081,14 +935,6 @@
         "summary": "Gets all media in an account.",
         "operationId": "GetMedia",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "query",
@@ -1174,16 +1020,6 @@
         "summary": "Uploads new media asset.",
         "description": "POST body must be in multipart/form-data format",
         "operationId": "PostMediaMultipart",
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -1295,14 +1131,6 @@
         "operationId": "GetMediaById",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Media Id",
@@ -1345,14 +1173,6 @@
         "summary": "Update media asset properties.",
         "operationId": "PutMedia",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
@@ -1403,14 +1223,6 @@
         "operationId": "PatchMedia",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Media Id",
@@ -1457,14 +1269,6 @@
         "operationId": "DeleteMedia",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "",
@@ -1505,14 +1309,6 @@
         "summary": "Gets media groups.",
         "operationId": "GetMediaGroups",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "tree",
             "in": "query",
@@ -1584,16 +1380,6 @@
         ],
         "summary": "Create a new media group.",
         "operationId": "PostMediaGroup",
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "description": "Media group",
           "content": {
@@ -1642,14 +1428,6 @@
         "summary": "Updates a media group.",
         "operationId": "PutMediaGroup",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
@@ -1700,14 +1478,6 @@
         "description": "Group must be empty.",
         "operationId": "DeleteMediaGroup",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
@@ -1763,14 +1533,6 @@
             "in": "path",
             "description": "",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
             "schema": {
               "type": "string"
             }
@@ -1867,14 +1629,6 @@
         "operationId": "PostMediaImport",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "url",
             "in": "query",
             "description": "URL of the file to import",
@@ -1930,14 +1684,6 @@
         "description": "",
         "operationId": "GetPlaylists",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "query",
@@ -2025,14 +1771,6 @@
         "operationId": "GetPlaylistById",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Playlist Id",
@@ -2075,14 +1813,6 @@
         "summary": "Put a playlist. Replaces a playlist with the one provided.",
         "operationId": "PutPlaylist",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
@@ -2133,14 +1863,6 @@
         "operationId": "DeletePlaylist",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Playlist Id",
@@ -2179,14 +1901,6 @@
         "summary": "Patch a playlist. Patch allows partial updates by targeting specific properties of the playlist.\r\nUses the JSON Patch syntax (http://jsonpatch.com)",
         "operationId": "PatchPlaylist",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
@@ -2236,14 +1950,6 @@
         "description": "",
         "operationId": "GetPlaylistGroups",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "tree",
             "in": "query",
@@ -2315,15 +2021,6 @@
         ],
         "summary": "Create a new playlist group.",
         "operationId": "PostPlaylistGroup",
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "description": "Playlist group",
           "content": {
@@ -2372,14 +2069,6 @@
         "summary": "Updates a playlist group.",
         "operationId": "PutPlaylistGroup",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
@@ -2431,14 +2120,6 @@
         "operationId": "DeletePlaylistGroup",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Playlist group Id",
@@ -2478,13 +2159,6 @@
         ],
         "operationId": "GetImpressionsByGenderReport",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "start",
             "in": "query",
@@ -2565,13 +2239,6 @@
         ],
         "operationId": "GetImpressionsByHourReport",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "start",
             "in": "query",
@@ -2659,13 +2326,6 @@
         "operationId": "GetImpressionsByAgeReport",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "start",
             "in": "query",
             "schema": {
@@ -2751,13 +2411,6 @@
         ],
         "operationId": "GetDeviceDetailReport",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "start",
             "in": "query",
@@ -2845,13 +2498,6 @@
         "operationId": "GetGenderDetailReport",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "start",
             "in": "query",
             "schema": {
@@ -2937,13 +2583,6 @@
         ],
         "operationId": "GetDeviceSummaryReport",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "start",
             "in": "query",
@@ -3031,13 +2670,6 @@
         "operationId": "GetDeviceHeatmapReport",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "start",
             "in": "query",
             "schema": {
@@ -3123,13 +2755,6 @@
         ],
         "operationId": "GetDeviceGeolocationReport",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "start",
             "in": "query",
@@ -3218,14 +2843,6 @@
         "operationId": "GetReportById",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "query",
             "description": "Optional report id filter",
@@ -3272,14 +2889,6 @@
         "summary": "Generate and export a report.",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "exclude_body",
             "in": "query",
             "description": "Exclude the generated report body in the response. This report is always available at the URL provided in the X-RevelDigital-GeneratedReportUrl header value.",
@@ -3325,13 +2934,6 @@
         ],
         "operationId": "ExportReport",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "report_id",
             "in": "path",
@@ -3439,14 +3041,6 @@
         "operationId": "GetSchedules",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "query",
             "description": "Optional schedule Id to filter by",
@@ -3538,16 +3132,6 @@
         ],
         "summary": "Creates a new schedule.",
         "operationId": "PostSchedule",
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "description": "",
           "content": {
@@ -3597,14 +3181,6 @@
         "operationId": "GetScheduleById",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Schedule Id",
@@ -3647,14 +3223,6 @@
         "summary": "Update schedule.",
         "operationId": "PutSchedule",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API Key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
@@ -3705,14 +3273,6 @@
         "operationId": "PatchSchedule",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Schedule Id",
@@ -3759,14 +3319,6 @@
         "operationId": "DeleteSchedule",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API Key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Schedule Id",
@@ -3807,14 +3359,6 @@
         "summary": "Gets schedule groups in the account.",
         "operationId": "GetScheduleGroups",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "tree",
             "in": "query",
@@ -3886,16 +3430,6 @@
         ],
         "summary": "Create a new schedule group.",
         "operationId": "PostScheduleGroup",
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "description": "Schedule group",
           "content": {
@@ -3944,14 +3478,6 @@
         "summary": "Updates a schedule group.",
         "operationId": "PutScheduleGroup",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
@@ -4003,14 +3529,6 @@
         "operationId": "DeleteScheduleGroup",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API Key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Schedule group Id",
@@ -4052,14 +3570,6 @@
         "description": "",
         "operationId": "GetTemplates",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "query",
@@ -4149,14 +3659,6 @@
         "operationId": "GetTemplateById",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Template Id",
@@ -4200,14 +3702,6 @@
         "operationId": "DeleteTemplate",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Template Id",
@@ -4249,14 +3743,6 @@
         "description": "",
         "operationId": "GetTemplateGroups",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "tree",
             "in": "query",
@@ -4328,15 +3814,6 @@
         ],
         "summary": "Create a new template group.",
         "operationId": "PostTemplateGroup",
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "description": "Template group",
           "content": {
@@ -4385,14 +3862,6 @@
         "summary": "Updates a template group.",
         "operationId": "PutTemplateGroup",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
@@ -4444,14 +3913,6 @@
         "operationId": "DeleteTemplateGroup",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "Template group Id",
@@ -4493,14 +3954,6 @@
         "description": "",
         "operationId": "GetUsers",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "query",
@@ -4567,14 +4020,6 @@
         "description": "",
         "operationId": "GetUserById",
         "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "description": "API key",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "in": "path",
