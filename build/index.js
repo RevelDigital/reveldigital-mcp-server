@@ -17,7 +17,7 @@ import axios from 'axios';
  */
 export const SERVER_NAME = "revel-digital-rest-api";
 export const SERVER_VERSION = "v1";
-export const API_BASE_URL = "https://localhost:63551/api";
+export const API_BASE_URL = "https://api.reveldigital.com";
 /**
  * MCP Server instance
  */

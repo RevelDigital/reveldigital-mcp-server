@@ -8,7 +8,7 @@
  */
 export declare const SERVER_NAME = "revel-digital-rest-api";
 export declare const SERVER_VERSION = "v1";
-export declare const API_BASE_URL = "https://localhost:63551/api";
+export declare const API_BASE_URL = "https://api.reveldigital.com";
 /**
  * Type definition for cached OAuth tokens
  */
