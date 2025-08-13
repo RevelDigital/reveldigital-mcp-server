@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 /**
  * MCP Server generated from OpenAPI spec for revel-digital-rest-api vv1
- * Generated on: 2025-05-26T16:16:40.449Z
+ * Generated on: 2025-08-12T01:00:01.004Z
  */
 /**
  * Server configuration
  */
 export declare const SERVER_NAME = "revel-digital-rest-api";
 export declare const SERVER_VERSION = "v1";
-export declare const API_BASE_URL = "https://api.reveldigital.com";
+export declare const API_BASE_URL = "https://localhost:63551/api";
 /**
  * Type definition for cached OAuth tokens
  */
