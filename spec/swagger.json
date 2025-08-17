@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://localhost:63551/api"
+      "url": "https://api.reveldigital.com"
     }
   ],
   "paths": {
@@ -141,43 +141,43 @@
         "operationId": "GetDevices",
         "parameters": [
           {
-            "name": "id",
+            "name": "Id",
             "in": "query",
-            "description": "",
+            "description": "Unique identifier for the device.",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "take",
+            "name": "Take",
             "in": "query",
-            "description": "Optional number of items to return",
+            "description": "Maximum number of items to retrieve in a query.",
             "schema": {
               "type": "integer",
               "format": "int32"
             }
           },
           {
-            "name": "page",
+            "name": "Page",
             "in": "query",
-            "description": "Optional number of page to return",
+            "description": "Current page number for paginated results.",
             "schema": {
               "type": "integer",
               "format": "int32"
             }
           },
           {
-            "name": "device_type_id",
+            "name": "DeviceTypeId",
             "in": "query",
-            "description": "Optional device type Id",
+            "description": "Unique identifier for the type of device.",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "group_id",
+            "name": "GroupId",
             "in": "query",
-            "description": "Optional media group Id",
+            "description": "List of unique identifiers for media groups to filter by.",
             "schema": {
               "type": "array",
               "items": {
@@ -186,9 +186,9 @@
             }
           },
           {
-            "name": "group_name",
+            "name": "GroupName",
             "in": "query",
-            "description": "Optional group name to filter by",
+            "description": "Collection of group names to filter by.",
             "schema": {
               "type": "array",
               "items": {
@@ -197,20 +197,27 @@
             }
           },
           {
-            "name": "include_snap",
+            "name": "IncludeSnap",
             "in": "query",
-            "description": "Optional include snapshot of currently playing content",
+            "description": "Include the snapshot of the currently playing content. JPG format, base64 encoded.",
             "schema": {
-              "type": "boolean",
-              "default": true
+              "type": "boolean"
             }
           },
           {
-            "name": "org_id",
+            "name": "OrgId",
             "in": "query",
-            "description": "Optional organization Id to filter by",
+            "description": "Unique identifier for an organization to filter by.",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "IsOnline",
+            "in": "query",
+            "description": "Filter devices by their online status.",
+            "schema": {
+              "type": "boolean"
             }
           }
         ],
@@ -5877,7 +5884,8 @@
           "Video",
           "VistarMedia",
           "WebPage",
-          "YouTube"
+          "YouTube",
+          "VistarMediaEx"
         ],
         "type": "string"
       },
