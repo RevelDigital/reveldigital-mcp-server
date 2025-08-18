@@ -456,6 +456,7 @@
           }
         ],
         "requestBody": {
+          "description": "Patch document",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -4075,7 +4076,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "Template Id",
+            "description": "User Id",
             "required": true,
             "schema": {
               "type": "string"
