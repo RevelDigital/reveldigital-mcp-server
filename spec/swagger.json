@@ -456,6 +456,7 @@
           }
         ],
         "requestBody": {
+          "description": "Patch document",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -4075,7 +4076,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "Template Id",
+            "description": "User Id",
             "required": true,
             "schema": {
               "type": "string"
@@ -5843,7 +5844,8 @@
           "Template",
           "Campaign"
         ],
-        "type": "string"
+        "type": "string",
+        "description": "The following schedule types are available:\r\n\r\n- Playlist\r\n  Playlist is considered a basic schedule consisting of a single playlist with a date range, time range, and days of the week.\r\n  Schedule properties to consider when using this type include the following: start_date, end_date, start_time, end_time, playlist_id, and monday-sunday\r\n  \r\n- Template\r\n  Template is considered a basic schedule consisting of a single template with a date range, time range, and days of the week.\r\n  Schedule properties to consider when using this type include the following: start_date, end_date, start_time, end_time, template_id, and monday-sunday\r\n  \r\n- Campaign\r\n  Campaign schedules, or 'Smart Schedules', are more advanced consisting of multiple conditions logically grouped to\r\n  determine what, when, and where content is played.\r\n  Schedule properties to consider when using this type include an array of conditions."
       },
       "Source": {
         "type": "object",
