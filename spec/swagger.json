@@ -1766,6 +1766,51 @@
             "ApiKeyInQuery": [ ]
           }
         ]
+      },
+      "post": {
+        "tags": [
+          "Playlists"
+        ],
+        "summary": "Create a new playlist.",
+        "operationId": "PostPlaylist",
+        "requestBody": {
+          "description": "Playlist to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Playlist"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns the newly-created playlist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the playlist is null or invalid"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "webapi"
+            ]
+          },
+          {
+            "ApiKeyInHeader": [ ]
+          },
+          {
+            "ApiKeyInQuery": [ ]
+          }
+        ]
       }
     },
     "/playlists/{id}": {
