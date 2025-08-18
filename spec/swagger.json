@@ -750,10 +750,19 @@
           {
             "name": "registrationKey",
             "in": "path",
-            "description": "",
+            "description": "Device registration key",
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "base64",
+            "in": "query",
+            "description": "If true, the JPG image will be returned as a base64-encoded string",
+            "schema": {
+              "type": "boolean",
+              "default": false
             }
           }
         ],
