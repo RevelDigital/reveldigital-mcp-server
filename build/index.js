@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
+import { CallToolRequestSchema, ListToolsRequestSchema, ListPromptsRequestSchema, GetPromptRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import { z, ZodError } from 'zod';
 import { jsonSchemaToZod } from 'json-schema-to-zod';
 import axios from 'axios';
@@ -21,7 +21,7 @@ export const API_BASE_URL = "https://api.reveldigital.com";
 /**
  * MCP Server instance
  */
-const server = new Server({ name: SERVER_NAME, version: SERVER_VERSION }, { capabilities: { tools: {} } });
+const server = new Server({ name: SERVER_NAME, version: SERVER_VERSION }, { capabilities: { tools: {}, prompts: {} } });
 /**
  * Map of tool definitions by name
  */
@@ -742,6 +742,70 @@ Uses the JSON Patch syntax (http://jsonpatch.com)`,
         }],
 ]);
 /**
+ * System prompt for Revel Digital MCP server
+ */
+const SYSTEM_PROMPT = `You are an AI assistant with access to the Revel Digital REST API through MCP tools. Revel Digital is a comprehensive digital signage platform that allows users to manage devices, content, playlists, schedules, and more.
+
+## Key Capabilities:
+
+### Account & Organization Management
+- View and update account details
+- Manage organization settings
+
+### Device Management  
+- Monitor device status and health
+- Configure device settings and groups
+- Send commands to devices
+- Troubleshoot connectivity issues
+
+### Content & Media Management
+- Upload and organize media files
+- Create and manage media groups
+- Handle content metadata and tags
+- Control content sharing and permissions
+
+### Playlist Management
+- Create multimedia, slideshow, template, and marquee playlists
+- Configure playlist duration and loop policies
+- Manage playlist items and sequencing
+- Set up randomized playback
+
+### Scheduling & Automation
+- Create complex scheduling rules with conditions
+- Set up time-based, location-based, and event-driven triggers
+- Manage recurring schedules
+- Configure conditional content display
+
+### Analytics & Reporting
+- Generate usage reports and metrics
+- Monitor content delivery performance
+- Track device analytics
+- Export data for analysis
+
+## Important Guidelines:
+
+1. **Always verify device and content IDs** before performing operations
+2. **Use appropriate date/time formats** (MM/dd/yyyy hh:mm:ss aa) for scheduling
+3. **Consider device groups and organizations** when managing large deployments
+4. **Be mindful of content sharing settings** when working across organizations
+5. **Validate playlist types and durations** before creating or updating playlists
+6. **Check device online status** before sending commands
+7. **Use descriptive names and tags** for better content organization
+8. **The DaysOfWeek condition value utilizes an integer Bitfield starting with Sunday as the least significant bit**
+9. **Consider using 'Playlist' or 'Template' schedule types for very basic scheduling needs. Use 'Campaign' for more complex scenarios with advanced scheduling options.**
+
+When helping users, be specific about what operations you're performing and provide clear feedback about the results. Always prioritize data safety and verify operations before execution.`;
+/**
+ * Available prompts for the MCP server
+ */
+const availablePrompts = [
+    {
+        name: "revel-digital-assistant",
+        description: "System prompt for Revel Digital digital signage management assistant",
+        arguments: []
+    }
+];
+/**
  * Security schemes from the OpenAPI spec
  */
 const securitySchemes = {
@@ -786,6 +850,28 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return { content: [{ type: "text", text: `Error: Unknown tool requested: ${toolName}` }] };
     }
     return await executeApiTool(toolName, toolDefinition, toolArgs ?? {}, securitySchemes);
+});
+// Prompt request handlers
+server.setRequestHandler(ListPromptsRequestSchema, async () => {
+    return { prompts: availablePrompts };
+});
+server.setRequestHandler(GetPromptRequestSchema, async (request) => {
+    const { name } = request.params;
+    if (name === "revel-digital-assistant") {
+        return {
+            description: "System prompt for Revel Digital digital signage management assistant",
+            messages: [
+                {
+                    role: "user",
+                    content: {
+                        type: "text",
+                        text: SYSTEM_PROMPT
+                    }
+                }
+            ]
+        };
+    }
+    throw new Error(`Unknown prompt: ${name}`);
 });
 /**
  * Acquires an OAuth2 token using client credentials flow
