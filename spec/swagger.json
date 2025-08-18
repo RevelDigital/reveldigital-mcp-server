@@ -4804,7 +4804,8 @@
           "Postfill",
           "Spreadfill"
         ],
-        "type": "string"
+        "type": "string",
+        "description": "Loop policy type determines how a source is to generatively positioned within a loop.\r\nIMPORTANT: Playlist duration must be set for this to take effect. If no playlist duration is specified, then source loop policy should not be assigned."
       },
       "Media": {
         "type": "object",
