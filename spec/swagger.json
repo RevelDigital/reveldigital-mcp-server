@@ -743,7 +743,7 @@
         "tags": [
           "Devices"
         ],
-        "summary": "Gets current snapshot of the device screen.",
+        "summary": "Gets current snapshot of the device screen. Image is returned as a JPEG image.",
         "operationId": "GetSnapshot",
         "parameters": [
           {
@@ -4295,22 +4295,22 @@
           },
           "value_1": {
             "type": "string",
-            "description": "Value 1",
+            "description": "Value 1. See ConditionType documentation for usage notes.",
             "nullable": true
           },
           "value_2": {
             "type": "string",
-            "description": "Value 2",
+            "description": "Value 2. See ConditionType documentation for usage notes.",
             "nullable": true
           },
           "value_3": {
             "type": "string",
-            "description": "Value 3",
+            "description": "Value 3. See ConditionType documentation for usage notes.",
             "nullable": true
           },
           "value_4": {
             "type": "string",
-            "description": "Value 4",
+            "description": "Value 4. See ConditionType documentation for usage notes.",
             "nullable": true
           }
         },

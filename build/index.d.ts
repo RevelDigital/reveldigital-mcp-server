@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * MCP Server generated from OpenAPI spec for revel-digital-rest-api vv1
- * Generated on: 2025-08-18T03:20:51.257Z
+ * Generated on: 2025-08-18T18:49:44.749Z
  */
 /**
  * Server configuration
