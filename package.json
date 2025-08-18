@@ -13,7 +13,8 @@
   ],
   "keywords": [
     "revel-digital",
-    "mcp"
+    "mcp",
+    "digital-signage"
   ],
   "scripts": {
     "start": "node build/index.js",
