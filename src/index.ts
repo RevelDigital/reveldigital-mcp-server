@@ -209,10 +209,10 @@ Uses the JSON Patch syntax (http://jsonpatch.com)`,
   ["getsnapshot", {
     name: "getsnapshot",
     description: `Gets current snapshot of the device screen. Image is returned as a JPEG image.`,
-    inputSchema: {"type":"object","properties":{"registrationKey":{"type":"string"}},"required":["registrationKey"]},
+    inputSchema: {"type":"object","properties":{"registrationKey":{"type":"string","description":"Device registration key"},"base64":{"type":"boolean","default":false,"description":"If true, the JPG image will be returned as a base64-encoded string"}},"required":["registrationKey"]},
     method: "get",
     pathTemplate: "/devices/{registrationKey}/snap",
-    executionParameters: [{"name":"registrationKey","in":"path"}],
+    executionParameters: [{"name":"registrationKey","in":"path"},{"name":"base64","in":"query"}],
     requestBodyContentType: undefined,
     securityRequirements: [{}]
   }],
@@ -780,7 +780,6 @@ Uses the JSON Patch syntax (http://jsonpatch.com)`,
     securityRequirements: [{"Bearer":["webapi"]},{"ApiKeyInHeader":[]},{"ApiKeyInQuery":[]}]
   }],
 ]);
-
 /**
  * System prompt for Revel Digital MCP server
  */
