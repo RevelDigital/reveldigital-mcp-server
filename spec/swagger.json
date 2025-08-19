@@ -2953,7 +2953,7 @@
           {
             "name": "exclude_body",
             "in": "query",
-            "description": "Exclude the generated report body in the response. This report is always available at the URL provided in the X-RevelDigital-GeneratedReportUrl header value.",
+            "description": "Exclude the generated report body in the response.\r\n            This report is always available at the URL provided in the X-RevelDigital-GeneratedReportUrl response header value.",
             "schema": {
               "type": "boolean"
             }
@@ -2974,111 +2974,6 @@
             "description": "OK"
           }
         },
-        "security": [
-          {
-            "Bearer": [
-              "webapi"
-            ]
-          },
-          {
-            "ApiKeyInHeader": [ ]
-          },
-          {
-            "ApiKeyInQuery": [ ]
-          }
-        ]
-      }
-    },
-    "/report/export/{report_id}": {
-      "get": {
-        "tags": [
-          "Report"
-        ],
-        "operationId": "ExportReport",
-        "parameters": [
-          {
-            "name": "report_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "format",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/FormatType"
-            }
-          },
-          {
-            "name": "activity_type",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "interval",
-            "in": "query",
-            "description": "Duration interval to generate the report for",
-            "schema": {
-              "$ref": "#/components/schemas/IntervalType"
-            }
-          },
-          {
-            "name": "start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "device_id",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "user_id",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "media_id",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "deprecated": true,
         "security": [
           {
             "Bearer": [
@@ -5467,25 +5362,25 @@
           },
           "start_date": {
             "type": "string",
-            "description": "Start date",
+            "description": "Report start date.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ",
             "format": "date-time",
             "nullable": true
           },
           "end_date": {
             "type": "string",
-            "description": "End date",
+            "description": "Report end date.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ",
             "format": "date-time",
             "nullable": true
           },
           "start_time": {
             "type": "string",
-            "description": "Start time\r\n\r\nFormat is 'HHmm'",
+            "description": "Report start time.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ",
             "format": "date-time",
             "nullable": true
           },
           "end_time": {
             "type": "string",
-            "description": "End time\r\n\r\nFormat is 'HHmm'",
+            "description": "Report end time.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ",
             "format": "date-time",
             "nullable": true
           },
@@ -5514,7 +5409,8 @@
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Represents the body of a request to export a report, including details such as the report identifier,  export\r\nformat, activity type, reporting interval, date and time ranges, and filters for devices, users,  and media\r\nitems."
       },
       "ReportParameter": {
         "type": "object",
