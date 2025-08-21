@@ -439,84 +439,14 @@ Uses the JSON Patch syntax (http://jsonpatch.com)`,
             requestBodyContentType: undefined,
             securityRequirements: [{ "Bearer": ["webapi"] }, { "ApiKeyInHeader": [] }, { "ApiKeyInQuery": [] }]
         }],
-    ["getimpressionsbygenderreport", {
-            name: "getimpressionsbygenderreport",
-            description: `Executes GET /report/adhawk/impressions-by-gender`,
-            inputSchema: { "type": "object", "properties": { "start": { "type": "string", "format": "date-time" }, "end": { "type": "string", "format": "date-time" }, "gender": { "type": "array", "items": { "type": "string" } }, "device_id": { "type": "array", "items": { "type": "string" } }, "compare_start": { "type": "string", "format": "date-time" }, "compare_end": { "type": "string", "format": "date-time" } } },
-            method: "get",
-            pathTemplate: "/report/adhawk/impressions-by-gender",
-            executionParameters: [{ "name": "start", "in": "query" }, { "name": "end", "in": "query" }, { "name": "gender", "in": "query" }, { "name": "device_id", "in": "query" }, { "name": "compare_start", "in": "query" }, { "name": "compare_end", "in": "query" }],
-            requestBodyContentType: undefined,
-            securityRequirements: [{ "Bearer": ["webapi"] }, { "ApiKeyInHeader": [] }, { "ApiKeyInQuery": [] }]
-        }],
-    ["getimpressionsbyhourreport", {
-            name: "getimpressionsbyhourreport",
-            description: `Executes GET /report/adhawk/impressions-by-hour`,
-            inputSchema: { "type": "object", "properties": { "start": { "type": "string", "format": "date-time" }, "end": { "type": "string", "format": "date-time" }, "interval": { "enum": ["Minute", "Hour", "Day", "Month"], "type": "string", "description": "Duration interval to generate the report for" }, "metric": { "enum": ["PingCount", "AverageDwell"], "type": "string", "description": "Type of metric to run the report on" }, "device_id": { "type": "array", "items": { "type": "string" } }, "compare_start": { "type": "string", "format": "date-time" }, "compare_end": { "type": "string", "format": "date-time" } } },
-            method: "get",
-            pathTemplate: "/report/adhawk/impressions-by-hour",
-            executionParameters: [{ "name": "start", "in": "query" }, { "name": "end", "in": "query" }, { "name": "interval", "in": "query" }, { "name": "metric", "in": "query" }, { "name": "device_id", "in": "query" }, { "name": "compare_start", "in": "query" }, { "name": "compare_end", "in": "query" }],
-            requestBodyContentType: undefined,
-            securityRequirements: [{ "Bearer": ["webapi"] }, { "ApiKeyInHeader": [] }, { "ApiKeyInQuery": [] }]
-        }],
-    ["getimpressionsbyagereport", {
-            name: "getimpressionsbyagereport",
-            description: `Executes GET /report/adhawk/impressions-by-age`,
-            inputSchema: { "type": "object", "properties": { "start": { "type": "string", "format": "date-time" }, "end": { "type": "string", "format": "date-time" }, "interval": { "enum": ["Minute", "Hour", "Day", "Month"], "type": "string", "description": "Duration interval to generate the report for" }, "metric": { "enum": ["PingCount", "AverageDwell"], "type": "string", "description": "Type of metric to run the report on" }, "device_id": { "type": "array", "items": { "type": "string" } }, "compare_start": { "type": "string", "format": "date-time" }, "compare_end": { "type": "string", "format": "date-time" } } },
-            method: "get",
-            pathTemplate: "/report/adhawk/impressions-by-age",
-            executionParameters: [{ "name": "start", "in": "query" }, { "name": "end", "in": "query" }, { "name": "interval", "in": "query" }, { "name": "metric", "in": "query" }, { "name": "device_id", "in": "query" }, { "name": "compare_start", "in": "query" }, { "name": "compare_end", "in": "query" }],
-            requestBodyContentType: undefined,
-            securityRequirements: [{ "Bearer": ["webapi"] }, { "ApiKeyInHeader": [] }, { "ApiKeyInQuery": [] }]
-        }],
-    ["getdevicedetailreport", {
-            name: "getdevicedetailreport",
-            description: `Executes GET /report/adhawk/device-detail`,
-            inputSchema: { "type": "object", "properties": { "start": { "type": "string", "format": "date-time" }, "end": { "type": "string", "format": "date-time" }, "interval": { "enum": ["Minute", "Hour", "Day", "Month"], "type": "string", "description": "Duration interval to generate the report for" }, "metric": { "enum": ["PingCount", "AverageDwell"], "type": "string", "description": "Type of metric to run the report on" }, "device_id": { "type": "array", "items": { "type": "string" } }, "compare_start": { "type": "string", "format": "date-time" }, "compare_end": { "type": "string", "format": "date-time" } } },
-            method: "get",
-            pathTemplate: "/report/adhawk/device-detail",
-            executionParameters: [{ "name": "start", "in": "query" }, { "name": "end", "in": "query" }, { "name": "interval", "in": "query" }, { "name": "metric", "in": "query" }, { "name": "device_id", "in": "query" }, { "name": "compare_start", "in": "query" }, { "name": "compare_end", "in": "query" }],
-            requestBodyContentType: undefined,
-            securityRequirements: [{ "Bearer": ["webapi"] }, { "ApiKeyInHeader": [] }, { "ApiKeyInQuery": [] }]
-        }],
-    ["getgenderdetailreport", {
-            name: "getgenderdetailreport",
-            description: `Executes GET /report/adhawk/gender-detail`,
-            inputSchema: { "type": "object", "properties": { "start": { "type": "string", "format": "date-time" }, "end": { "type": "string", "format": "date-time" }, "interval": { "enum": ["Minute", "Hour", "Day", "Month"], "type": "string", "description": "Duration interval to generate the report for" }, "metric": { "enum": ["PingCount", "AverageDwell"], "type": "string", "description": "Type of metric to run the report on" }, "device_id": { "type": "array", "items": { "type": "string" } }, "compare_start": { "type": "string", "format": "date-time" }, "compare_end": { "type": "string", "format": "date-time" } } },
-            method: "get",
-            pathTemplate: "/report/adhawk/gender-detail",
-            executionParameters: [{ "name": "start", "in": "query" }, { "name": "end", "in": "query" }, { "name": "interval", "in": "query" }, { "name": "metric", "in": "query" }, { "name": "device_id", "in": "query" }, { "name": "compare_start", "in": "query" }, { "name": "compare_end", "in": "query" }],
-            requestBodyContentType: undefined,
-            securityRequirements: [{ "Bearer": ["webapi"] }, { "ApiKeyInHeader": [] }, { "ApiKeyInQuery": [] }]
-        }],
-    ["getdevicesummaryreport", {
-            name: "getdevicesummaryreport",
-            description: `Executes GET /report/adhawk/device-summary`,
-            inputSchema: { "type": "object", "properties": { "start": { "type": "string", "format": "date-time" }, "end": { "type": "string", "format": "date-time" }, "interval": { "enum": ["Minute", "Hour", "Day", "Month"], "type": "string", "description": "Duration interval to generate the report for" }, "metric": { "enum": ["PingCount", "AverageDwell"], "type": "string", "description": "Type of metric to run the report on" }, "device_id": { "type": "array", "items": { "type": "string" } }, "compare_start": { "type": "string", "format": "date-time" }, "compare_end": { "type": "string", "format": "date-time" } } },
-            method: "get",
-            pathTemplate: "/report/adhawk/device-summary",
-            executionParameters: [{ "name": "start", "in": "query" }, { "name": "end", "in": "query" }, { "name": "interval", "in": "query" }, { "name": "metric", "in": "query" }, { "name": "device_id", "in": "query" }, { "name": "compare_start", "in": "query" }, { "name": "compare_end", "in": "query" }],
-            requestBodyContentType: undefined,
-            securityRequirements: [{ "Bearer": ["webapi"] }, { "ApiKeyInHeader": [] }, { "ApiKeyInQuery": [] }]
-        }],
-    ["getdeviceheatmapreport", {
-            name: "getdeviceheatmapreport",
-            description: `Executes GET /report/adhawk/device-heatmap`,
-            inputSchema: { "type": "object", "properties": { "start": { "type": "string", "format": "date-time" }, "end": { "type": "string", "format": "date-time" }, "interval": { "enum": ["Minute", "Hour", "Day", "Month"], "type": "string", "description": "Duration interval to generate the report for" }, "metric": { "enum": ["PingCount", "AverageDwell"], "type": "string", "description": "Type of metric to run the report on" }, "device_id": { "type": "array", "items": { "type": "string" } }, "compare_start": { "type": "string", "format": "date-time" }, "compare_end": { "type": "string", "format": "date-time" } } },
-            method: "get",
-            pathTemplate: "/report/adhawk/device-heatmap",
-            executionParameters: [{ "name": "start", "in": "query" }, { "name": "end", "in": "query" }, { "name": "interval", "in": "query" }, { "name": "metric", "in": "query" }, { "name": "device_id", "in": "query" }, { "name": "compare_start", "in": "query" }, { "name": "compare_end", "in": "query" }],
-            requestBodyContentType: undefined,
-            securityRequirements: [{ "Bearer": ["webapi"] }, { "ApiKeyInHeader": [] }, { "ApiKeyInQuery": [] }]
-        }],
-    ["getdevicegeolocationreport", {
-            name: "getdevicegeolocationreport",
-            description: `Executes GET /report/adhawk/device-geolocation`,
-            inputSchema: { "type": "object", "properties": { "start": { "type": "string", "format": "date-time" }, "end": { "type": "string", "format": "date-time" }, "interval": { "enum": ["Minute", "Hour", "Day", "Month"], "type": "string", "description": "Duration interval to generate the report for" }, "metric": { "enum": ["PingCount", "AverageDwell"], "type": "string", "description": "Type of metric to run the report on" }, "device_id": { "type": "array", "items": { "type": "string" } }, "compare_start": { "type": "string", "format": "date-time" }, "compare_end": { "type": "string", "format": "date-time" } } },
-            method: "get",
-            pathTemplate: "/report/adhawk/device-geolocation",
-            executionParameters: [{ "name": "start", "in": "query" }, { "name": "end", "in": "query" }, { "name": "interval", "in": "query" }, { "name": "metric", "in": "query" }, { "name": "device_id", "in": "query" }, { "name": "compare_start", "in": "query" }, { "name": "compare_end", "in": "query" }],
-            requestBodyContentType: undefined,
+    ["postreportadhawk", {
+            name: "postreportadhawk",
+            description: `Returns Adhawk dataset based on the provided post parameters.`,
+            inputSchema: { "type": "object", "properties": { "requestBody": { "required": ["dataset_type"], "type": "object", "properties": { "dataset_type": { "enum": ["ImpressionTotals", "GenderTotals", "DailyImpressions", "DwellRange", "AgeRange", "DayOfWeekByHourHeatmap", "ImpressionsByGenderByDay", "ImpressionsByAgeGroupByDay", "GenderAgeHeatmap", "DailyAverageDwell", "ImpressionsByDeviceAndPingType", "ImpressionsByMedia", "EventsTotals", "DailyEvents", "EventsByEventName", "EventsByDeviceName", "EventsByDeviceCountry", "AverageDwellByEventName", "EventsBySession", "AverageDwellBySession", "AverageEventsByNameAndSession", "NetworkPingTotals", "NetworkAlertTotals", "NetworkAlertsByLocation"], "type": "string", "description": "This enumeration defines the different categories of datasets that can be used for analytics\r\nand reporting within the AdHawk platform. Each value corresponds to a specific type of data aggregation or\r\nanalysis, such as impressions, demographics, dwell times, events, or network-related metrics.\r\n\r\nThe following AdHawk dataset types are available:\r\n\r\nImpressionTotals: Total audience impressions for the given time period\r\nGenderTotals: Audience impression totals grouped by gender\r\nDailyImpressions: Total impressions grouped by interval (day, week, month, hour, minute)\r\nDwellRange: Impressions grouped by the following dwell ranges in seconds: 0-5, 5-10, 10-15, 15-30, 30-45, 45-60, 60-120, 120+\r\nAgeRange: Impressions grouped by the following age ranges: 0-17, 18-24, 25-34, 35-44, 45-54, 55-64, 65-74, 75+\r\nDayOfWeekByHourHeatmap: Impressions grouped by day of week and hour of day\r\nImpressionsByGenderByDay: Impressions grouped by gender and day\r\nImpressionsByAgeGroupByDay: Impressions grouped by age group and day\r\nGenderAgeHeatmap: Impressions grouped by gender and age\r\nDailyAverageDwell: Average dwell time by day\r\nImpressionsByDeviceAndPingType: Impressions grouped by device and ping type\r\nImpressionsByMedia: Impressions grouped by media\r\n\r\nEventsTotals: Total events and sessions for the given time period\r\nDailyEvents: Total events grouped by interval (day, week, month, hour, minute)\r\nEventsByEventName: Total events grouped by event name\r\nEventsByDeviceName: Total events grouped by device name\r\nEventsByDeviceCountry: Total events grouped by device country\r\nAverageDwellByEventName: Average dwell time grouped by event name\r\nEventsBySession: Total events grouped by session\r\nAverageDwellBySession: Average dwell time grouped by session\r\nAverageEventsByNameAndSession: Average events grouped by event name and session\r\n\r\nNetworkPingTotals: Total device pings including percetage of time active, downloading, and playing. Grouped by interval (day, week, month, hour, minute)\r\nNetworkAlertTotals: Totals alerts grouped by alert type and interval (day, week, month, hour, minute)\r\nNetworkAlertsByLocation: Alerts grouped by location" }, "interval_type": { "enum": ["Minute", "Hour", "Day", "Week", "Month"], "type": "string" }, "device_id": { "type": ["array", "null"], "items": { "type": "string" }, "description": "Array of devices by Id" }, "start_date": { "type": ["string", "null"], "description": "Report start date.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ", "format": "date-time" }, "end_date": { "type": ["string", "null"], "description": "Report end date.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ", "format": "date-time" }, "compare_start_time": { "type": ["string", "null"], "description": "Report start time.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ", "format": "date-time" }, "compare_end_time": { "type": ["string", "null"], "description": "Report end time.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ", "format": "date-time" } }, "additionalProperties": false, "description": "Represents the body of a request for an AdHawk dataset." } } },
+            method: "post",
+            pathTemplate: "/report/adhawk",
+            executionParameters: [],
+            requestBodyContentType: "application/json",
             securityRequirements: [{ "Bearer": ["webapi"] }, { "ApiKeyInHeader": [] }, { "ApiKeyInQuery": [] }]
         }],
     ["getreportbyid", {
