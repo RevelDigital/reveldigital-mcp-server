@@ -2214,668 +2214,37 @@
         ]
       }
     },
-    "/report/adhawk/impressions-by-gender": {
-      "get": {
+    "/report/adhawk": {
+      "post": {
         "tags": [
           "Report"
         ],
-        "operationId": "GetImpressionsByGenderReport",
-        "parameters": [
-          {
-            "name": "start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "gender",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
+        "summary": "Returns Adhawk dataset based on the provided post parameters.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdHawkDatasetPostBody"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdHawkDatasetPostBody"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdHawkDatasetPostBody"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdHawkDatasetPostBody"
               }
             }
-          },
-          {
-            "name": "device_id",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "compare_start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "compare_end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
           }
         },
-        "security": [
-          {
-            "Bearer": [
-              "webapi"
-            ]
-          },
-          {
-            "ApiKeyInHeader": [ ]
-          },
-          {
-            "ApiKeyInQuery": [ ]
-          }
-        ]
-      }
-    },
-    "/report/adhawk/impressions-by-hour": {
-      "get": {
-        "tags": [
-          "Report"
-        ],
-        "operationId": "GetImpressionsByHourReport",
-        "parameters": [
-          {
-            "name": "start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "interval",
-            "in": "query",
-            "description": "Duration interval to generate the report for",
-            "schema": {
-              "$ref": "#/components/schemas/IntervalType"
-            }
-          },
-          {
-            "name": "metric",
-            "in": "query",
-            "description": "Type of metric to run the report on",
-            "schema": {
-              "$ref": "#/components/schemas/MetricType"
-            }
-          },
-          {
-            "name": "device_id",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "compare_start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "compare_end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "Bearer": [
-              "webapi"
-            ]
-          },
-          {
-            "ApiKeyInHeader": [ ]
-          },
-          {
-            "ApiKeyInQuery": [ ]
-          }
-        ]
-      }
-    },
-    "/report/adhawk/impressions-by-age": {
-      "get": {
-        "tags": [
-          "Report"
-        ],
-        "operationId": "GetImpressionsByAgeReport",
-        "parameters": [
-          {
-            "name": "start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "interval",
-            "in": "query",
-            "description": "Duration interval to generate the report for",
-            "schema": {
-              "$ref": "#/components/schemas/IntervalType"
-            }
-          },
-          {
-            "name": "metric",
-            "in": "query",
-            "description": "Type of metric to run the report on",
-            "schema": {
-              "$ref": "#/components/schemas/MetricType"
-            }
-          },
-          {
-            "name": "device_id",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "compare_start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "compare_end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "Bearer": [
-              "webapi"
-            ]
-          },
-          {
-            "ApiKeyInHeader": [ ]
-          },
-          {
-            "ApiKeyInQuery": [ ]
-          }
-        ]
-      }
-    },
-    "/report/adhawk/device-detail": {
-      "get": {
-        "tags": [
-          "Report"
-        ],
-        "operationId": "GetDeviceDetailReport",
-        "parameters": [
-          {
-            "name": "start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "interval",
-            "in": "query",
-            "description": "Duration interval to generate the report for",
-            "schema": {
-              "$ref": "#/components/schemas/IntervalType"
-            }
-          },
-          {
-            "name": "metric",
-            "in": "query",
-            "description": "Type of metric to run the report on",
-            "schema": {
-              "$ref": "#/components/schemas/MetricType"
-            }
-          },
-          {
-            "name": "device_id",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "compare_start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "compare_end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "Bearer": [
-              "webapi"
-            ]
-          },
-          {
-            "ApiKeyInHeader": [ ]
-          },
-          {
-            "ApiKeyInQuery": [ ]
-          }
-        ]
-      }
-    },
-    "/report/adhawk/gender-detail": {
-      "get": {
-        "tags": [
-          "Report"
-        ],
-        "operationId": "GetGenderDetailReport",
-        "parameters": [
-          {
-            "name": "start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "interval",
-            "in": "query",
-            "description": "Duration interval to generate the report for",
-            "schema": {
-              "$ref": "#/components/schemas/IntervalType"
-            }
-          },
-          {
-            "name": "metric",
-            "in": "query",
-            "description": "Type of metric to run the report on",
-            "schema": {
-              "$ref": "#/components/schemas/MetricType"
-            }
-          },
-          {
-            "name": "device_id",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "compare_start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "compare_end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "Bearer": [
-              "webapi"
-            ]
-          },
-          {
-            "ApiKeyInHeader": [ ]
-          },
-          {
-            "ApiKeyInQuery": [ ]
-          }
-        ]
-      }
-    },
-    "/report/adhawk/device-summary": {
-      "get": {
-        "tags": [
-          "Report"
-        ],
-        "operationId": "GetDeviceSummaryReport",
-        "parameters": [
-          {
-            "name": "start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "interval",
-            "in": "query",
-            "description": "Duration interval to generate the report for",
-            "schema": {
-              "$ref": "#/components/schemas/IntervalType"
-            }
-          },
-          {
-            "name": "metric",
-            "in": "query",
-            "description": "Type of metric to run the report on",
-            "schema": {
-              "$ref": "#/components/schemas/MetricType"
-            }
-          },
-          {
-            "name": "device_id",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "compare_start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "compare_end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "Bearer": [
-              "webapi"
-            ]
-          },
-          {
-            "ApiKeyInHeader": [ ]
-          },
-          {
-            "ApiKeyInQuery": [ ]
-          }
-        ]
-      }
-    },
-    "/report/adhawk/device-heatmap": {
-      "get": {
-        "tags": [
-          "Report"
-        ],
-        "operationId": "GetDeviceHeatmapReport",
-        "parameters": [
-          {
-            "name": "start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "interval",
-            "in": "query",
-            "description": "Duration interval to generate the report for",
-            "schema": {
-              "$ref": "#/components/schemas/IntervalType"
-            }
-          },
-          {
-            "name": "metric",
-            "in": "query",
-            "description": "Type of metric to run the report on",
-            "schema": {
-              "$ref": "#/components/schemas/MetricType"
-            }
-          },
-          {
-            "name": "device_id",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "compare_start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "compare_end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "Bearer": [
-              "webapi"
-            ]
-          },
-          {
-            "ApiKeyInHeader": [ ]
-          },
-          {
-            "ApiKeyInQuery": [ ]
-          }
-        ]
-      }
-    },
-    "/report/adhawk/device-geolocation": {
-      "get": {
-        "tags": [
-          "Report"
-        ],
-        "operationId": "GetDeviceGeolocationReport",
-        "parameters": [
-          {
-            "name": "start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "interval",
-            "in": "query",
-            "description": "Duration interval to generate the report for",
-            "schema": {
-              "$ref": "#/components/schemas/IntervalType"
-            }
-          },
-          {
-            "name": "metric",
-            "in": "query",
-            "description": "Type of metric to run the report on",
-            "schema": {
-              "$ref": "#/components/schemas/MetricType"
-            }
-          },
-          {
-            "name": "device_id",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "compare_start",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "compare_end",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -4110,6 +3479,94 @@
         "additionalProperties": false,
         "description": "Account model"
       },
+      "AdHawkDatasetPostBody": {
+        "required": [
+          "dataset_type"
+        ],
+        "type": "object",
+        "properties": {
+          "dataset_type": {
+            "$ref": "#/components/schemas/AdHawkDatasetType"
+          },
+          "interval_type": {
+            "$ref": "#/components/schemas/AdHawkIntervalType"
+          },
+          "device_id": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of devices by Id",
+            "nullable": true
+          },
+          "start_date": {
+            "type": "string",
+            "description": "Report start date.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ",
+            "format": "date-time",
+            "nullable": true
+          },
+          "end_date": {
+            "type": "string",
+            "description": "Report end date.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ",
+            "format": "date-time",
+            "nullable": true
+          },
+          "compare_start_time": {
+            "type": "string",
+            "description": "Report start time.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ",
+            "format": "date-time",
+            "nullable": true
+          },
+          "compare_end_time": {
+            "type": "string",
+            "description": "Report end time.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the body of a request for an AdHawk dataset."
+      },
+      "AdHawkDatasetType": {
+        "enum": [
+          "ImpressionTotals",
+          "GenderTotals",
+          "DailyImpressions",
+          "DwellRange",
+          "AgeRange",
+          "DayOfWeekByHourHeatmap",
+          "ImpressionsByGenderByDay",
+          "ImpressionsByAgeGroupByDay",
+          "GenderAgeHeatmap",
+          "DailyAverageDwell",
+          "ImpressionsByDeviceAndPingType",
+          "ImpressionsByMedia",
+          "EventsTotals",
+          "DailyEvents",
+          "EventsByEventName",
+          "EventsByDeviceName",
+          "EventsByDeviceCountry",
+          "AverageDwellByEventName",
+          "EventsBySession",
+          "AverageDwellBySession",
+          "AverageEventsByNameAndSession",
+          "NetworkPingTotals",
+          "NetworkAlertTotals",
+          "NetworkAlertsByLocation"
+        ],
+        "type": "string",
+        "description": "This enumeration defines the different categories of datasets that can be used for analytics\r\nand reporting within the AdHawk platform. Each value corresponds to a specific type of data aggregation or\r\nanalysis, such as impressions, demographics, dwell times, events, or network-related metrics.\r\n\r\nThe following AdHawk dataset types are available:\r\n\r\nImpressionTotals: Total audience impressions for the given time period\r\nGenderTotals: Audience impression totals grouped by gender\r\nDailyImpressions: Total impressions grouped by interval (day, week, month, hour, minute)\r\nDwellRange: Impressions grouped by the following dwell ranges in seconds: 0-5, 5-10, 10-15, 15-30, 30-45, 45-60, 60-120, 120+\r\nAgeRange: Impressions grouped by the following age ranges: 0-17, 18-24, 25-34, 35-44, 45-54, 55-64, 65-74, 75+\r\nDayOfWeekByHourHeatmap: Impressions grouped by day of week and hour of day\r\nImpressionsByGenderByDay: Impressions grouped by gender and day\r\nImpressionsByAgeGroupByDay: Impressions grouped by age group and day\r\nGenderAgeHeatmap: Impressions grouped by gender and age\r\nDailyAverageDwell: Average dwell time by day\r\nImpressionsByDeviceAndPingType: Impressions grouped by device and ping type\r\nImpressionsByMedia: Impressions grouped by media\r\n\r\nEventsTotals: Total events and sessions for the given time period\r\nDailyEvents: Total events grouped by interval (day, week, month, hour, minute)\r\nEventsByEventName: Total events grouped by event name\r\nEventsByDeviceName: Total events grouped by device name\r\nEventsByDeviceCountry: Total events grouped by device country\r\nAverageDwellByEventName: Average dwell time grouped by event name\r\nEventsBySession: Total events grouped by session\r\nAverageDwellBySession: Average dwell time grouped by session\r\nAverageEventsByNameAndSession: Average events grouped by event name and session\r\n\r\nNetworkPingTotals: Total device pings including percetage of time active, downloading, and playing. Grouped by interval (day, week, month, hour, minute)\r\nNetworkAlertTotals: Totals alerts grouped by alert type and interval (day, week, month, hour, minute)\r\nNetworkAlertsByLocation: Alerts grouped by location"
+      },
+      "AdHawkIntervalType": {
+        "enum": [
+          "Minute",
+          "Hour",
+          "Day",
+          "Week",
+          "Month"
+        ],
+        "type": "string"
+      },
       "Beacon": {
         "type": "object",
         "properties": {
@@ -4904,14 +4361,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "MetricType": {
-        "enum": [
-          "PingCount",
-          "AverageDwell"
-        ],
-        "type": "string",
-        "description": "Type of metric to run the report on"
       },
       "Module": {
         "type": "object",
