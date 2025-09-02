@@ -141,7 +141,7 @@
         "operationId": "GetDevices",
         "parameters": [
           {
-            "name": "Id",
+            "name": "id",
             "in": "query",
             "description": "Unique identifier for the device.",
             "schema": {
@@ -149,7 +149,7 @@
             }
           },
           {
-            "name": "Take",
+            "name": "take",
             "in": "query",
             "description": "Maximum number of items to retrieve in a query.",
             "schema": {
@@ -158,7 +158,7 @@
             }
           },
           {
-            "name": "Page",
+            "name": "page",
             "in": "query",
             "description": "Current page number for paginated results.",
             "schema": {
@@ -167,7 +167,7 @@
             }
           },
           {
-            "name": "DeviceTypeId",
+            "name": "device_type_id",
             "in": "query",
             "description": "Unique identifier for the type of device.",
             "schema": {
@@ -175,7 +175,7 @@
             }
           },
           {
-            "name": "GroupId",
+            "name": "group_id",
             "in": "query",
             "description": "List of unique identifiers for media groups to filter by.",
             "schema": {
@@ -186,7 +186,7 @@
             }
           },
           {
-            "name": "GroupName",
+            "name": "group_name",
             "in": "query",
             "description": "Collection of group names to filter by.",
             "schema": {
@@ -197,7 +197,7 @@
             }
           },
           {
-            "name": "IncludeSnap",
+            "name": "include_snap",
             "in": "query",
             "description": "Include the snapshot of the currently playing content. JPG format, base64 encoded.",
             "schema": {
@@ -205,7 +205,7 @@
             }
           },
           {
-            "name": "OrgId",
+            "name": "org_id",
             "in": "query",
             "description": "Unique identifier for an organization to filter by.",
             "schema": {
@@ -213,7 +213,7 @@
             }
           },
           {
-            "name": "IsOnline",
+            "name": "is_online",
             "in": "query",
             "description": "Filter devices by their online status.",
             "schema": {
@@ -3496,18 +3496,18 @@
             "items": {
               "type": "string"
             },
-            "description": "Array of devices by Id",
+            "description": "Array of devices by Id. REQUIRED",
             "nullable": true
           },
           "start_date": {
             "type": "string",
-            "description": "Report start date.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ",
+            "description": "Report start date. REQUIRED\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ",
             "format": "date-time",
             "nullable": true
           },
           "end_date": {
             "type": "string",
-            "description": "Report end date.\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ",
+            "description": "Report end date. REQUIRED\r\n\r\nProvide in ISO 8601 format: YYYY-MM-DDThh:mm:ssZ",
             "format": "date-time",
             "nullable": true
           },
